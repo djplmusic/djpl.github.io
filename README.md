@@ -39,7 +39,7 @@ Tu peux me contacter directement via le formulaire sur le site pour :
 
 ## 👤 Auteur
 
-- Ton prénom / Nom DJ
+- DJ PL
 
 ## ⭐ Remerciements
 
