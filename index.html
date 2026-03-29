@@ -1,0 +1,454 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --sun:#F5A623;--ocean:#3A7FBF;--sunset:#E8610A;
+  --cream:#F5EED8;--cream-dark:#E8DFC0;--ink:#1A1208;--ink-light:#3D2E10;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);font-family:'DM Mono',monospace;color:var(--ink);overflow-x:hidden;}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:1px solid var(--cream-dark);display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;}
+.nav-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;letter-spacing:2px;}
+.nav-logo span{color:var(--sun);}
+.nav-links{display:flex;gap:1.5rem;list-style:none;}
+.nav-links a{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-light);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--sun);}
+
+/* HERO */
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;padding:3rem 2rem 4rem;}
+.hero-bg{position:absolute;inset:0;background:var(--cream);}
+.sun-wrap{position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);width:600px;height:400px;}
+.sun-half{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:300px;height:150px;background:var(--sun);border-radius:150px 150px 0 0;}
+.ray{position:absolute;bottom:0;left:50%;width:2px;transform-origin:bottom center;animation:rpulse 3s ease-in-out infinite;}
+@keyframes rpulse{0%,100%{opacity:.3;}50%{opacity:.6;}}
+.waves{position:absolute;bottom:0;left:0;right:0;}
+.wave{height:11px;margin-bottom:2px;animation:wmove 4s ease-in-out infinite;}
+@keyframes wmove{0%,100%{transform:translateX(0);}50%{transform:translateX(-6px);}}
+.hero-content{position:relative;z-index:5;}
+.hero-eyebrow{font-size:9px;letter-spacing:6px;text-transform:uppercase;color:var(--ocean);margin-bottom:.5rem;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(80px,14vw,130px);font-weight:700;line-height:.85;letter-spacing:-2px;}
+.hero-title .pl{color:var(--sun);}
+.hero-title .dj-it{font-style:italic;font-size:.42em;color:var(--ink-light);letter-spacing:4px;display:block;margin-bottom:.2rem;}
+.hero-sub{font-size:10px;letter-spacing:4px;color:var(--ink-light);text-transform:uppercase;margin-top:1rem;}
+.hero-cta{display:inline-block;margin-top:1.5rem;padding:.75rem 2rem;background:var(--ink);color:var(--cream);font-size:9px;letter-spacing:4px;text-transform:uppercase;text-decoration:none;border-radius:4px;transition:background .2s;}
+.hero-cta:hover{background:var(--sun);color:var(--ink);}
+
+/* SECTIONS */
+.section{padding:4rem 2rem;border-top:1px solid var(--cream-dark);}
+.section-label{font-size:8px;letter-spacing:5px;text-transform:uppercase;color:#b0a080;margin-bottom:2rem;display:flex;align-items:center;gap:1rem;}
+.section-label::after{content:'';flex:1;height:0.5px;background:var(--cream-dark);}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,42px);font-weight:700;margin-bottom:.5rem;}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem;}
+.service-card{border:0.5px solid var(--cream-dark);border-radius:12px;padding:2rem;transition:border-color .2s,box-shadow .2s;cursor:pointer;}
+.service-card:hover{border-color:var(--sun);box-shadow:0 4px 24px rgba(245,166,35,.08);}
+.service-icon{font-size:32px;margin-bottom:1rem;}
+.service-name{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;margin-bottom:.5rem;}
+.service-desc{font-size:11px;color:var(--ink-light);line-height:1.8;margin-bottom:1rem;}
+.service-price{font-size:9px;letter-spacing:3px;color:var(--sun);text-transform:uppercase;}
+.service-btn{display:inline-block;margin-top:1rem;padding:.6rem 1.5rem;border:0.5px solid var(--ink);border-radius:4px;font-size:9px;letter-spacing:3px;text-transform:uppercase;background:transparent;cursor:pointer;color:var(--ink);font-family:'DM Mono',monospace;transition:all .2s;}
+.service-btn:hover{background:var(--ink);color:var(--cream);}
+
+/* FORMULAIRE */
+.form-wrap{background:var(--ink);border-radius:16px;padding:2.5rem;margin-top:1.5rem;display:none;}
+.form-wrap.active{display:block;animation:fadeup .4s ease;}
+@keyframes fadeup{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.form-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--cream);margin-bottom:1.5rem;}
+.form-title span{color:var(--sun);}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-group{display:flex;flex-direction:column;gap:.4rem;}
+.form-group.full{grid-column:1/-1;}
+label{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#8a7a50;}
+input,select,textarea{background:#2a2010;border:0.5px solid #3a3020;border-radius:6px;padding:.7rem 1rem;color:var(--cream);font-family:'DM Mono',monospace;font-size:12px;outline:none;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{border-color:var(--sun);}
+select option{background:#1A1208;}
+textarea{resize:vertical;min-height:100px;}
+.form-submit{margin-top:1.5rem;padding:.85rem 2.5rem;background:var(--sun);border:none;border-radius:6px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--ink);font-weight:500;cursor:pointer;transition:opacity .2s;}
+.form-submit:hover{opacity:.85;}
+.form-success{display:none;text-align:center;padding:2rem;color:var(--sun);font-size:12px;letter-spacing:2px;}
+
+/* CAROUSEL */
+.carousel-wrap{position:relative;overflow:hidden;border-radius:12px;margin-top:1.5rem;}
+.carousel-track{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1);}
+.carousel-slide{min-width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;border-radius:12px;position:relative;overflow:hidden;}
+.slide-inner{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;}
+.slide-ph{font-family:'Playfair Display',serif;font-size:clamp(18px,3vw,28px);font-style:italic;}
+.slide-sub{font-size:9px;letter-spacing:4px;text-transform:uppercase;opacity:.6;}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(245,238,216,.9);border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;font-size:16px;color:var(--ink);z-index:5;transition:background .2s;}
+.carousel-btn:hover{background:var(--sun);}
+.carousel-btn.prev{left:1rem;}
+.carousel-btn.next{right:1rem;}
+.carousel-dots{display:flex;justify-content:center;gap:.5rem;margin-top:1rem;}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--cream-dark);border:none;cursor:pointer;transition:background .2s;}
+.dot.active{background:var(--sun);}
+.upload-hint{font-size:10px;color:#b0a080;margin-top:.75rem;text-align:center;letter-spacing:2px;}
+
+/* BOUTIQUE */
+.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem;}
+.shop-card{border:0.5px solid var(--cream-dark);border-radius:12px;overflow:hidden;transition:border-color .2s;}
+.shop-card:hover{border-color:var(--sun);}
+.shop-img{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:28px;letter-spacing:2px;position:relative;}
+.shop-img .badge{position:absolute;top:10px;right:10px;background:var(--sunset);color:var(--cream);font-size:7px;letter-spacing:2px;padding:3px 8px;border-radius:4px;text-transform:uppercase;}
+.shop-info{padding:1rem;}
+.shop-name{font-size:12px;font-weight:500;margin-bottom:.25rem;letter-spacing:1px;}
+.shop-price{font-size:10px;color:var(--sun);letter-spacing:2px;}
+.shop-btn{display:block;width:100%;margin-top:.75rem;padding:.6rem;background:transparent;border:0.5px solid var(--cream-dark);border-radius:6px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;color:var(--ink);transition:all .2s;}
+.shop-btn:hover{background:var(--ink);color:var(--cream);border-color:var(--ink);}
+
+/* RESEAUX */
+.socials-grid{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;}
+.social-pill{display:flex;align-items:center;gap:.75rem;padding:.85rem 1.5rem;border:0.5px solid var(--cream-dark);border-radius:50px;text-decoration:none;color:var(--ink);transition:all .2s;flex:1;min-width:140px;}
+.social-pill:hover{border-color:var(--sun);background:var(--sun);color:var(--ink);}
+.social-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.social-name{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:500;}
+.social-handle{font-size:9px;color:var(--ink-light);letter-spacing:1px;}
+
+/* FOOTER */
+footer{background:var(--ink);padding:3rem 2rem;display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;align-items:center;}
+.footer-logo{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--cream);}
+.footer-logo span{color:var(--sun);}
+.footer-copy{font-size:9px;letter-spacing:3px;color:#4a4030;text-transform:uppercase;}
+
+@media(max-width:600px){
+  .services-grid,.form-grid,.shop-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+}
+</style>
+
+<div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">DJ <span>PL</span></div>
+  <ul class="nav-links">
+    <li><a href="#prestations">Prestations</a></li>
+    <li><a href="#photos">Photos</a></li>
+    <li><a href="#boutique">Boutique</a></li>
+    <li><a href="#reseaux">Réseaux</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg">
+    <div class="sun-wrap">
+      <div class="ray" style="height:220px;background:linear-gradient(to top,#F5A623,transparent);transform:translateX(-50%) rotate(-80deg);animation-delay:.0s"></div>
+      <div class="ray" style="height:240px;background:linear-gradient(to top,#F5A623,transparent);transform:translateX(-50%) rotate(-60deg);animation-delay:.2s"></div>
+      <div class="ray" style="height:250px;background:linear-gradient(to top,#F5A623,transparent);transform:translateX(-50%) rotate(-40deg);animation-delay:.4s"></div>
+      <div class="ray" style="height:250px;background:linear-gradient(to top,#F5A623,transparent);transform:translateX(-50%) rotate(-20deg);animation-delay:.1s"></div>
+      <div class="ray" style="height:260px;background:linear-gradient(to top,#F5A623,transparent);transform:translateX(-50%) rotate(0deg);animation-delay:.3s"></div>
+      <div class="ray" style="height:250px;background:linear-gradient(to top,#F5A623,transparent);transform:translateX(-50%) rotate(20deg);animation-delay:.5s"></div>
+      <div class="ray" style="height:250px;background:linear-gradient(to top,#F5A623,transparent);transform:translateX(-50%) rotate(40deg);animation-delay:.2s"></div>
+      <div class="ray" style="height:240px;background:linear-gradient(to top,#F5A623,transparent);transform:translateX(-50%) rotate(60deg);animation-delay:.4s"></div>
+      <div class="ray" style="height:220px;background:linear-gradient(to top,#F5A623,transparent);transform:translateX(-50%) rotate(80deg);animation-delay:.1s"></div>
+      <div class="sun-half"></div>
+    </div>
+    <div class="waves">
+      <div class="wave" style="background:#3A7FBF;opacity:.9;"></div>
+      <div class="wave" style="background:#3278B5;opacity:.8;animation-delay:.3s"></div>
+      <div class="wave" style="background:#2A6A9E;opacity:.7;animation-delay:.6s"></div>
+      <div class="wave" style="background:#245D8A;opacity:.65;animation-delay:.2s"></div>
+      <div class="wave" style="background:#1E5078;opacity:.6;animation-delay:.5s"></div>
+      <div class="wave" style="background:#194468;opacity:.55;animation-delay:.1s"></div>
+    </div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">DJ · Saxophoniste · Animateur</p>
+    <h1 class="hero-title">
+      <span class="dj-it">dj</span>
+      <span class="pl">PL</span>
+    </h1>
+    <p class="hero-sub">House · Électro · All Genres</p>
+    <a href="#prestations" class="hero-cta">Demander une prestation</a>
+  </div>
+</div>
+
+<!-- PRESTATIONS -->
+<div class="section" id="prestations">
+  <p class="section-label">01</p>
+  <h2 class="section-title">Prestations</h2>
+  <p style="font-size:11px;color:var(--ink-light);line-height:1.8;max-width:560px;">Mariage, anniversaire, soirée privée, club… Remplissez le formulaire et recevez un devis personnalisé sous 48h.</p>
+
+  <div class="services-grid">
+    <div class="service-card" onclick="openForm('DJ Set')">
+      <div class="service-icon">🎧</div>
+      <div class="service-name">DJ Set</div>
+      <p class="service-desc">Mix live toutes ambiances — House, Électro, Pop, Rétro. Soirées privées, mariages, clubs, festivals.</p>
+      <div class="service-price">Prix sur demande</div>
+      <button class="service-btn">Demander un devis</button>
+    </div>
+    <div class="service-card" onclick="openForm('DJ + Saxophone')">
+      <div class="service-icon">🎷</div>
+      <div class="service-name">DJ + Saxophone</div>
+      <p class="service-desc">L'alliance unique du mix électronique et du saxophone live. Un show incomparable qui fait vibrer la salle.</p>
+      <div class="service-price">Prix sur demande</div>
+      <button class="service-btn">Demander un devis</button>
+    </div>
+  </div>
+
+  <!-- FORMULAIRE -->
+  <div class="form-wrap" id="devis-form">
+    <div class="form-title">Demande de devis — <span id="form-service-label">DJ Set</span></div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Prénom & Nom</label>
+        <input type="text" placeholder="Jean Dupont"/>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="jean@email.com"/>
+      </div>
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input type="tel" placeholder="+33 6 00 00 00 00"/>
+      </div>
+      <div class="form-group">
+        <label>Date de l'événement</label>
+        <input type="date"/>
+      </div>
+      <div class="form-group">
+        <label>Type d'événement</label>
+        <select>
+          <option>Mariage</option>
+          <option>Anniversaire</option>
+          <option>Soirée privée</option>
+          <option>Club / Bar</option>
+          <option>Festival</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Nombre de personnes</label>
+        <input type="number" placeholder="150"/>
+      </div>
+      <div class="form-group">
+        <label>Lieu / Ville</label>
+        <input type="text" placeholder="Paris, France"/>
+      </div>
+      <div class="form-group">
+        <label>Durée souhaitée</label>
+        <select>
+          <option>2h</option>
+          <option>3h</option>
+          <option>4h</option>
+          <option>5h+</option>
+          <option>À définir</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label>Message / Infos complémentaires</label>
+        <textarea placeholder="Ambiance souhaitée, thème, demandes particulières…"></textarea>
+      </div>
+    </div>
+    <button class="form-submit" onclick="submitForm()">Envoyer ma demande →</button>
+    <div class="form-success" id="form-success">
+      ✓ Demande envoyée ! Je vous réponds sous 48h.
+    </div>
+  </div>
+</div>
+
+<!-- CAROUSEL PHOTOS -->
+<div class="section" id="photos">
+  <p class="section-label">02</p>
+  <h2 class="section-title">Soirées & Events</h2>
+  <div class="carousel-wrap">
+    <div class="carousel-track" id="track">
+      <div class="carousel-slide">
+        <div class="slide-inner" style="background:linear-gradient(135deg,#1A1208,#2a1a08);">
+          <svg width="60" height="60" viewBox="0 0 60 60" style="animation:spin 8s linear infinite;opacity:.4;">
+            <circle cx="30" cy="30" r="28" fill="none" stroke="#F5A623" stroke-width="1.5"/>
+            <circle cx="30" cy="30" r="20" fill="none" stroke="#F5A623" stroke-width="1"/>
+            <circle cx="30" cy="30" r="12" fill="none" stroke="#F5A623" stroke-width="1"/>
+            <circle cx="30" cy="30" r="4" fill="#F5A623"/>
+          </svg>
+          <span class="slide-ph" style="color:var(--cream);">Soirée Club · Paris</span>
+          <span class="slide-sub" style="color:#8a7a50;">Ajoutez vos photos ici</span>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <div class="slide-inner" style="background:linear-gradient(135deg,#0d2e4a,#1e5078);">
+          <span style="font-size:48px;opacity:.3;">🎷</span>
+          <span class="slide-ph" style="color:var(--cream);">DJ + Saxo · Mariage</span>
+          <span class="slide-sub" style="color:#4a90c4;">Ajoutez vos photos ici</span>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <div class="slide-inner" style="background:linear-gradient(135deg,#3a1a00,#7a3a00);">
+          <span style="font-size:48px;opacity:.3;">🌅</span>
+          <span class="slide-ph" style="color:var(--cream);">Open Air · Sunset Set</span>
+          <span class="slide-sub" style="color:#F5A623;">Ajoutez vos photos ici</span>
+        </div>
+      </div>
+      <div class="carousel-slide">
+        <div class="slide-inner" style="background:linear-gradient(135deg,#1a0a2e,#2a1a5e);">
+          <span style="font-size:48px;opacity:.3;">🎧</span>
+          <span class="slide-ph" style="color:var(--cream);">Festival · Été 2024</span>
+          <span class="slide-sub" style="color:#a090e0;">Ajoutez vos photos ici</span>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-btn prev" onclick="slide(-1)">‹</button>
+    <button class="carousel-btn next" onclick="slide(1)">›</button>
+  </div>
+  <div class="carousel-dots" id="dots">
+    <button class="dot active" onclick="goTo(0)"></button>
+    <button class="dot" onclick="goTo(1)"></button>
+    <button class="dot" onclick="goTo(2)"></button>
+    <button class="dot" onclick="goTo(3)"></button>
+  </div>
+  <p class="upload-hint">↑ Remplacez les slides par vos vraies photos de soirées</p>
+</div>
+
+<!-- BOUTIQUE -->
+<div class="section" id="boutique">
+  <p class="section-label">03</p>
+  <h2 class="section-title">Boutique DJ PL</h2>
+  <p style="font-size:11px;color:var(--ink-light);line-height:1.8;max-width:560px;margin-bottom:0;">Portez l'univers DJ PL. Collection capsule en édition limitée.</p>
+  <div class="shop-grid">
+    <div class="shop-card">
+      <div class="shop-img" style="background:#1A1208;color:var(--sun);">
+        DJ<span style="color:var(--cream);">PL</span>
+        <span class="badge">New</span>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">T-Shirt Logo</div>
+        <div class="shop-price">35 €</div>
+        <button class="shop-btn">Ajouter au panier</button>
+      </div>
+    </div>
+    <div class="shop-card">
+      <div class="shop-img" style="background:var(--sun);color:var(--ink);">
+        DJ<span style="color:var(--ocean);">PL</span>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Hoodie Sunset</div>
+        <div class="shop-price">65 €</div>
+        <button class="shop-btn">Ajouter au panier</button>
+      </div>
+    </div>
+    <div class="shop-card">
+      <div class="shop-img" style="background:var(--ocean);color:var(--cream);">
+        DJ<span style="color:var(--sun);">PL</span>
+        <span class="badge" style="background:var(--ink);">Limited</span>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Cap Vinyle</div>
+        <div class="shop-price">28 €</div>
+        <button class="shop-btn">Ajouter au panier</button>
+      </div>
+    </div>
+    <div class="shop-card">
+      <div class="shop-img" style="background:var(--cream-dark);color:var(--ink);">
+        DJ<span style="color:var(--sunset);">PL</span>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Tote Bag Soleil</div>
+        <div class="shop-price">18 €</div>
+        <button class="shop-btn">Ajouter au panier</button>
+      </div>
+    </div>
+    <div class="shop-card">
+      <div class="shop-img" style="background:#2a1a08;color:var(--cream);">
+        <svg width="50" height="50" viewBox="0 0 50 50"><circle cx="25" cy="25" r="23" fill="none" stroke="#F5A623" stroke-width="1.5"/><circle cx="25" cy="25" r="15" fill="none" stroke="#F5A623" stroke-width="1"/><circle cx="25" cy="25" r="4" fill="#F5A623"/></svg>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Vinyle Collector</div>
+        <div class="shop-price">22 €</div>
+        <button class="shop-btn">Ajouter au panier</button>
+      </div>
+    </div>
+    <div class="shop-card">
+      <div class="shop-img" style="background:#1e3a5c;color:var(--cream);">
+        DJ<span style="color:var(--sun);">PL</span>
+        <span class="badge" style="background:var(--sunset);">Soon</span>
+      </div>
+      <div class="shop-info">
+        <div class="shop-name">Bomber Océan</div>
+        <div class="shop-price">90 €</div>
+        <button class="shop-btn" style="opacity:.5;cursor:default;">Bientôt dispo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RÉSEAUX -->
+<div class="section" id="reseaux">
+  <p class="section-label">04</p>
+  <h2 class="section-title">Retrouvez-moi</h2>
+  <div class="socials-grid">
+    <a href="#" class="social-pill">
+      <div class="social-icon" style="background:#e1306c;color:#fff;font-weight:700;font-size:11px;">IG</div>
+      <div><div class="social-name">Instagram</div><div class="social-handle">@djpl</div></div>
+    </a>
+    <a href="#" class="social-pill">
+      <div class="social-icon" style="background:#1877f2;color:#fff;font-weight:700;font-size:11px;">FB</div>
+      <div><div class="social-name">Facebook</div><div class="social-handle">DJ PL Officiel</div></div>
+    </a>
+    <a href="#" class="social-pill">
+      <div class="social-icon" style="background:#ff5500;color:#fff;font-weight:700;font-size:10px;">SC</div>
+      <div><div class="social-name">SoundCloud</div><div class="social-handle">djpl</div></div>
+    </a>
+    <a href="#" class="social-pill">
+      <div class="social-icon" style="background:#1db954;color:#fff;font-weight:700;font-size:10px;">SP</div>
+      <div><div class="social-name">Spotify</div><div class="social-handle">DJ PL</div></div>
+    </a>
+    <a href="#" class="social-pill">
+      <div class="social-icon" style="background:#ff0000;color:#fff;font-weight:700;font-size:10px;">YT</div>
+      <div><div class="social-name">YouTube</div><div class="social-handle">DJ PL Music</div></div>
+    </a>
+    <a href="#" class="social-pill">
+      <div class="social-icon" style="background:#010101;color:#fff;font-weight:700;font-size:10px;">TK</div>
+      <div><div class="social-name">TikTok</div><div class="social-handle">@djpl</div></div>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">DJ <span>PL</span></div>
+  <div class="footer-copy">© 2025 DJ PL · Tous droits réservés</div>
+  <div style="font-size:9px;letter-spacing:2px;color:#4a4030;">House · Électro · Saxo</div>
+</footer>
+
+</div>
+
+<style>
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+</style>
+
+<script>
+let cur = 0;
+const total = 4;
+
+function slide(dir){
+  cur = (cur + dir + total) % total;
+  updateCarousel();
+}
+
+function goTo(i){
+  cur = i;
+  updateCarousel();
+}
+
+function updateCarousel(){
+  document.getElementById('track').style.transform = `translateX(-${cur*100}%)`;
+  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===cur));
+}
+
+function openForm(service){
+  const form = document.getElementById('devis-form');
+  document.getElementById('form-service-label').textContent = service;
+  form.classList.add('active');
+  form.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function submitForm(){
+  document.querySelector('.form-submit').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+</script>
